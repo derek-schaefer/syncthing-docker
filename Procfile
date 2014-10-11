@@ -1,1 +1,1 @@
-server: docker run -i -p ${GUI_PORT:-8080}:8080 -p ${PROTOCOL_PORT:-22000}:22000 -p ${DISCOVERY_PORT:-21025}:21025/udp -v ${CONFIG_VOLUME}:/root/.config/syncthing -v ${DATA_VOLUME}:/root/Sync derekschaefer/syncthing
+server: docker run -i -p ${GUI_PORT:-8080}:8080 -p ${PROTOCOL_PORT:-22000}:22000 -p ${DISCOVERY_PORT:-21025}:21025/udp -v ${CONFIG_VOLUME}:/root/.config/syncthing -v ${SYNC_VOLUME}:/root/Sync derekschaefer/syncthing
