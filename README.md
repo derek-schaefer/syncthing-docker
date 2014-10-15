@@ -21,9 +21,3 @@ DISCOVERY_PORT=21025
 CONFIG_VOLUME=/home/user/syncthing/config
 SYNC_VOLUME=/home/user/syncthing/sync
 ```
-
-## License
-
-Copyright &copy; 2014 Derek Schaefer (<derek.schaefer@gmail.com>)
-
-Licensed under the [MIT License](http://opensource.org/licenses/MIT).
