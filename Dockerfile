@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean
 
-ENV VERSION 0.10.0
+ENV VERSION 0.10.1
 ENV DOWNLOAD_URL https://github.com/syncthing/syncthing/releases/download
 
 RUN wget -O $VERSION.tar.gz $DOWNLOAD_URL/v$VERSION/syncthing-linux-amd64-v$VERSION.tar.gz
