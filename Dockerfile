@@ -10,13 +10,13 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean
 
-ENV VERSION 0.10.1
-ENV DOWNLOAD_URL https://github.com/syncthing/syncthing/releases/download
+ENV VERSION 0.10.2
+ENV DISTRIBUTION syncthing-linux-amd64-v$VERSION
 
-RUN wget -O $VERSION.tar.gz $DOWNLOAD_URL/v$VERSION/syncthing-linux-amd64-v$VERSION.tar.gz
-RUN tar xzf $VERSION.tar.gz && \
-    mv syncthing-linux-amd64-v$VERSION/syncthing /usr/local/bin/ && \
-    rm -r $VERSION.tar.gz syncthing-linux-amd64-v$VERSION
+RUN wget -O $VERSION.tar.gz https://github.com/syncthing/syncthing/releases/download/v$VERSION/$DISTRIBUTION.tar.gz && \
+    tar xzf $VERSION.tar.gz && \
+    mv $DISTRIBUTION/syncthing /usr/local/bin/ && \
+    rm -r $VERSION.tar.gz $DISTRIBUTION
 
 VOLUME ["/root/.config/syncthing", "/root/Sync"]
 
