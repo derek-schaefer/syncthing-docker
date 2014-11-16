@@ -1,6 +1,6 @@
 NAME=syncthing
 ORG=derekschaefer
-VERSION=0.10.4
+VERSION=0.10.5
 SOURCES=Dockerfile
 DOWNLOAD=https://github.com/syncthing/syncthing/releases/download
 DISTRIBUTION=syncthing-linux-amd64-v$(VERSION)
