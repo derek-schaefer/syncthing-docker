@@ -1,7 +1,6 @@
 NAME=syncthing
 ORG=derekschaefer
-VERSION=0.10.5
-SOURCES=Dockerfile
+VERSION=0.10.6
 DOWNLOAD=https://github.com/syncthing/syncthing/releases/download
 DISTRIBUTION=syncthing-linux-amd64-v$(VERSION)
 
@@ -16,7 +15,7 @@ download:
 	tar -xzf build/$(NAME).tar.gz -C build
 	cp build/$(DISTRIBUTION)/syncthing build
 
-build: $(SOURCES)
+build: download
 	docker build -t $(ORG)/$(NAME):latest .
 	docker build -t $(ORG)/$(NAME):$(VERSION) .
 
