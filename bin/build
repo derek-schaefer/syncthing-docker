@@ -18,8 +18,7 @@ function download() {
 }
 
 function build() {
-  docker build -t $ORG/$NAME:latest .
-  docker build -t $ORG/$NAME:$VERSION .
+  docker build -t $ORG/$NAME .
 }
 
 function push() {
