@@ -1,6 +1,7 @@
 FROM debian:wheezy
-MAINTAINER Derek Schaefer <derek.schaefer@gmail.com>
-ADD build/syncthing /
+ADD build/syncthing /usr/local/sbin/
+RUN ln -s /root/Sync /sync && \
+    ln -s /root/.config/syncthing /config
+VOLUME ["/sync", "/config"]
 EXPOSE 8080 22000 21025/udp
-VOLUME ["/root/.config/syncthing", "/root/Sync"]
-CMD ["/syncthing", "-gui-address", "0.0.0.0:8080"]
+CMD ["syncthing", "-gui-address", "0.0.0.0:8080"]

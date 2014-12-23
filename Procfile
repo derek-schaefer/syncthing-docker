@@ -1,1 +1,0 @@
-syncthing: ${CMD:-docker} run -i -p ${GUI_PORT:-8080}:8080 -p ${PROTOCOL_PORT:-22000}:22000 -p ${DISCOVERY_PORT:-21025}:21025/udp -v ${CONFIG_VOLUME:-$(pwd)/config}:/root/.config/syncthing -v ${SYNC_VOLUME:-$(pwd)/sync}:/root/Sync derekschaefer/syncthing:${VERSION:-latest}

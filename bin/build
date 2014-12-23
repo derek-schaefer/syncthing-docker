@@ -1,0 +1,31 @@
+#!/bin/sh
+
+NAME=syncthing
+ORG=derekschaefer
+VERSION=0.10.13
+DOWNLOAD=https://github.com/syncthing/syncthing/releases/download
+DIST=syncthing-linux-amd64-v$VERSION
+
+function clean() {
+  rm -rf build config sync
+}
+
+function download() {
+  mkdir -p build
+  wget -O build/$NAME.tar.gz $DOWNLOAD/v$VERSION/$DIST.tar.gz
+  tar -xzf build/$NAME.tar.gz -C build
+  cp build/$DIST/syncthing build
+}
+
+function build() {
+  docker build -t $ORG/$NAME:latest .
+  docker build -t $ORG/$NAME:$VERSION .
+}
+
+function push() {
+  docker push $ORG/$NAME
+}
+
+for cmd in ${@:1}; do
+  eval $cmd
+done
