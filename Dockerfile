@@ -1,5 +1,5 @@
 FROM debian:wheezy
-ADD build/syncthing /usr/local/sbin/
+ADD dist/syncthing /usr/local/sbin/
 RUN ln -s /root/Sync /sync && \
     ln -s /root/.config/syncthing /config
 VOLUME ["/sync", "/config"]

@@ -2,7 +2,7 @@
 
 name=syncthing
 org=derekschaefer
-version=0.10.13
+version=0.10.14
 url=https://github.com/syncthing/syncthing/releases/download
 dist=syncthing-linux-amd64-v$version
 
@@ -11,21 +11,24 @@ function clean() {
 }
 
 function download() {
-  clean
   mkdir -p dist
-  curl -O dist/$name.tar.gz $url/v$version/$dist.tar.gz
+  curl -Lo dist/$name.tar.gz $url/v$version/$dist.tar.gz
   tar -xzf dist/$name.tar.gz -C dist
   cp dist/$dist/syncthing dist
 }
 
 function build() {
-  download
   docker build -t $org/$name .
 }
 
 function push() {
-  build
   docker push $org/$name
+}
+
+function all() {
+  clean
+  download
+  build
 }
 
 for cmd in ${@:1}; do
