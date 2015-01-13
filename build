@@ -2,7 +2,7 @@
 
 name=syncthing
 org=derekschaefer
-version=0.10.18
+version=0.10.19
 url=https://github.com/syncthing/syncthing/releases/download
 dist=syncthing-linux-amd64-v$version
 
