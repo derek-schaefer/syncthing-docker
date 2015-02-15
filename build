@@ -1,10 +1,10 @@
 #!/bin/sh
 
-name=syncthing
-org=derekschaefer
-version=0.10.21
-url=https://github.com/syncthing/syncthing/releases/download
-dist=syncthing-linux-amd64-v$version
+NAME=syncthing
+ORG=derekschaefer
+VERSION=0.10.23
+URL=https://github.com/syncthing/syncthing/releases/download
+DIST=syncthing-linux-amd64-v$VERSION
 
 function clean() {
   rm -rf dist config sync
@@ -12,17 +12,17 @@ function clean() {
 
 function download() {
   mkdir -p dist
-  curl -Lo dist/$name.tar.gz $url/v$version/$dist.tar.gz
-  tar -xzf dist/$name.tar.gz -C dist
-  cp dist/$dist/syncthing dist
+  curl -Lo dist/$NAME.tar.gz $URL/v$VERSION/$DIST.tar.gz
+  tar -xzf dist/$NAME.tar.gz -C dist
+  cp dist/$DIST/syncthing dist
 }
 
 function build() {
-  docker build -t $org/$name .
+  docker build -t $ORG/$NAME .
 }
 
 function push() {
-  docker push $org/$name
+  docker push $ORG/$NAME
 }
 
 function all() {
