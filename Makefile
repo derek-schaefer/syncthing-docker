@@ -1,8 +1,6 @@
-ORG=derekschaefer
 NAME=syncthing
-TAG=latest
-
-IMAGE=$(ORG)/$(NAME):$(TAG)
+ORG=derekschaefer
+IMAGE=$(ORG)/$(NAME)
 
 all: build
 
@@ -16,4 +14,4 @@ run:
 	docker run -it --rm \
 	  -p 8080:8080 -p 22000:22000 -p 21025:21025/udp \
 	  -v `pwd`/config:/config -v `pwd`/sync:/sync \
-	  $(IMAGE)
+	  $(IMAGE) $(CMD)

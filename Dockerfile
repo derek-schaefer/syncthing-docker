@@ -1,6 +1,6 @@
 FROM debian:wheezy
 
-ENV SYNCTHING_VERSION 0.10.30
+ENV SYNCTHING_VERSION 0.11.0
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -OL https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz && \
