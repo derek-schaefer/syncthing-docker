@@ -1,6 +1,6 @@
 FROM debian
 
-ENV SYNCTHING_VERSION 0.11.3
+ENV SYNCTHING_VERSION 0.11.5
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -OL https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz && \
