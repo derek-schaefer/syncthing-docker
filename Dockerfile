@@ -1,18 +1,24 @@
 FROM debian
 
-ENV SYNCTHING_VERSION 0.11.5
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -OL https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz && \
-    tar -xzf syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz && \
-    cp syncthing-linux-amd64-v$SYNCTHING_VERSION/syncthing /usr/local/bin && \
-    rm -r syncthing-linux-amd64-v$SYNCTHING_VERSION* && \
-    apt-get clean
+RUN apt-get update && apt-get install -y curl ca-certificates
 
-RUN ln -s /root/Sync /sync && \
-    ln -s /root/.config/syncthing /config
+ENV SYNCTHING_VERSION 0.11.6
+RUN DIST=syncthing-linux-amd64-v$SYNCTHING_VERSION && \
+    mkdir /tmp/syncthing && cd /tmp/syncthing && \
+    curl -OL https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/$DIST.tar.gz && \
+    tar -xzf $DIST.tar.gz && cp $DIST/syncthing /usr/local/bin
 
-VOLUME /sync /config
+RUN apt-get autoremove --purge -y curl && apt-get clean && \
+    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
+RUN useradd -m syncthing
+RUN ln -s /syncthing/Sync /mnt/sync && \
+    ln -s /syncthing/.config/syncthing /mnt/config
+
+VOLUME /mnt/sync /mnt/config
 EXPOSE 8080 22000 21025/udp
 
-CMD ["syncthing", "-gui-address", "0.0.0.0:8080"]
+USER syncthing
+WORKDIR /home/syncthing
+ENTRYPOINT ["syncthing"]
+CMD ["-gui-address", "0.0.0.0:8080"]

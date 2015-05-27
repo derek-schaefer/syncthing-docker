@@ -1,7 +1,6 @@
 NAME=syncthing
 ORG=derekschaefer
 IMAGE=$(ORG)/$(NAME)
-PWD=$(shell pwd)
 TAG=$(shell git describe --abbrev=0 --tags | sed -e 's/^v//g')
 
 all: build
@@ -11,10 +10,11 @@ build:
 	docker tag -f $(IMAGE) $(IMAGE):$(TAG)
 
 push:
-	docker push $(IMAGE)
+	docker push $(IMAGE):latest
+	docker push $(IMAGE):$(TAG)
 
 run:
-	docker run -it --rm \
+	docker run -it --rm --name syncthing \
 	  -p 8080:8080 -p 22000:22000 -p 21025:21025/udp \
-	  -v $(PWD)/config:/config -v $(PWD)/sync:/sync \
+	  -v `pwd`/config:/mnt/config -v `pwd`/sync:/mnt/sync \
 	  $(IMAGE) $(CMD)
