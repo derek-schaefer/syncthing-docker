@@ -10,14 +10,11 @@ RUN DIST=syncthing-linux-amd64-v$SYNCTHING_VERSION && \
 
 RUN apt-get autoremove --purge -y curl && apt-get clean
 
-RUN useradd -m syncthing
-RUN ln -s /syncthing/Sync /mnt/sync && \
-    ln -s /syncthing/.config/syncthing /mnt/config
+RUN ln -s /root/Sync /mnt/sync && \
+    ln -s /root/.config/syncthing /mnt/config
 
 VOLUME /mnt/sync /mnt/config
 EXPOSE 8080 22000 21025/udp
 
-USER syncthing
-WORKDIR /home/syncthing
 ENTRYPOINT ["syncthing"]
 CMD ["-gui-address", "0.0.0.0:8080"]
