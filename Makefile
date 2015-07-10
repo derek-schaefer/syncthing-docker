@@ -1,6 +1,4 @@
-NAME=syncthing
-ORG=derekschaefer
-IMAGE=$(ORG)/$(NAME)
+IMAGE=derekschaefer/syncthing
 TAG=$(shell git describe --abbrev=0 --tags | sed -e 's/^v//g')
 
 all: build
