@@ -2,7 +2,7 @@ FROM debian
 
 RUN apt-get update && apt-get install -y curl ca-certificates
 
-ENV SYNCTHING_VERSION 0.11.17
+ENV SYNCTHING_VERSION 0.11.20
 RUN DIST=syncthing-linux-amd64-v$SYNCTHING_VERSION && \
     mkdir /tmp/syncthing && cd /tmp/syncthing && \
     curl -OL https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/$DIST.tar.gz && \
